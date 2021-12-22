@@ -1,0 +1,21 @@
+{% extends 'comments/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+{% endblock style %}
+
+{% block content %}
+<div class="main">
+    <div class="comment-form-container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-body">
+                <h3>Body :</h3>
+                {{form.body}}
+            </div>
+            <button class="comment-btn" type="submit">Comment</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

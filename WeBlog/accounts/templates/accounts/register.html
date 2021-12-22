@@ -1,0 +1,31 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block static%}
+    <link rel="stylesheet" type="text/css" href="">
+{% endblock static%}
+
+{% block content %}
+    <div class="register-form">
+        <form action="" method="POST">
+            <h2 class="form-header">Register</h2> 
+            {% csrf_token %}
+            <div class="form-username">
+                <input type="text" class="form-input" name="username" placeholder="Username.." required>
+            </div>
+            <div class="form-email">
+                <input type="text" class="form-input" name="email" placeholder="Email Address.." required>
+            </div> 
+            <div class="form-password1">
+                <input type="password" class="form-input" name="password1" placeholder="Enter Password.." required>
+            </div> 
+            <div class="form-password2">
+                <input type="password" class="form-input" name="password2" placeholder="Confirm Password.." required>
+            </div> 
+            <div class="form-btn">
+                <button type="submit" class="btn signup-btn">Sign up</button>
+            </div>
+        </form>
+        <p class="info-text">Already have an account? <a href="{% url 'login' %}">Sign in here!</a></p>
+    </div>
+
+{% endblock content %}

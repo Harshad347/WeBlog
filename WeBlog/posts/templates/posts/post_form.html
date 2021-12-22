@@ -1,0 +1,35 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+{% endblock style %}
+
+{% block content %}
+<div class="main">
+    <div class="post-form-container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-title">
+                <h3>Title :</h3>
+                {{form.title}}
+            </div>
+            <div class="form-cover-pic">
+                <h3>Cover Picture :</h3>
+                <label class="upload-btn">
+                    {{form.cover_pic}}
+                </label>
+            </div>
+            <div class="form-overview">
+                <h3>Overview :</h3>
+                {{form.overview}}
+            </div>
+            <div class="form-description">
+                <h3>Description :</h3>
+                {{form.description}}
+            </div>
+            <button class="post-btn" type="submit">Post</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block static%}
+    <link rel="stylesheet" type="text/css" href="">
+{% endblock static%}
+
+{% block content %}
+    <div class="login-form">
+        <form action="" method="POST">
+            <h2 class="form-header">Login</h2>   
+            {% csrf_token %}
+            <div class="form-username">
+                {{form.username}}
+            </div>
+            <div class="form-password">
+                {{form.password}}
+            </div> 
+            {% for message in messages %}
+            <p> {{message}} </p>
+            {% endfor %}     
+            <div class="form-btn">
+                <button type="btn" class="btn signin-btn">Sign in</button>
+            </div>
+        </form>
+        <p class="info-text">Don't have an account? <a href="{% url 'register' %}">Sign up here!</a></p>
+    </div>
+
+    
+{% endblock content %}

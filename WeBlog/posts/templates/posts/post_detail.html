@@ -1,0 +1,44 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+{% endblock style %}
+
+{% block content %}
+<div class="main">
+    <div class="nav-bar">
+        <a class="back-btn" href="{% url 'home' %}"><button>Back</button></a>
+        <h1 align="center" class="nav-bar-header">WeBlog</h1>
+        <div align="right"><b>{{ request.user }}</b> <a href="{% url 'logout' %}" class="logout-link"><button>Logout</button></a></div>
+    </div>
+    <div class="post-detail-container">
+        <div class="post-detail">
+            <h3 class="post-title">{{ post.title }}</h3>
+            <p class="date-create">by <u>{{ post.author }}</u>, <small>{{ post.created_on }}</small></p>
+            <img src="{{post.cover_pic.url}}" alt="" class="cover_pic">
+            <div class="overview-container">
+                <h3 class="overview-header"><b>Overview</b></h3>
+                <p class="post-overview">{{ post.overview }}</p>
+            </div>
+            <p class="post-description">{{ post.description }}</p>
+            <a href="{% url 'post-update' post.id %}" align="right" class="update-link"><button>Update</button></a>
+            <a href="{% url 'post-delete' post.id %}" align="right" class="delete-link"><button>Delete</button></a>
+            <p class="date-update">Updated on, <small>{{ post.updated_on }}</small></p>
+        </div>
+        <div class="create-comment-container">
+            <a href="{% url 'comment-create' post.id %}" align="center" class="create-link"><button>Add Comment</button></a>
+        </div>
+        <div class="comment-container">
+            {% for comment in comments %}
+            <h3 class="comment-body">{{ comment.body }}</h3>
+            <p class="date-create-comment">by <u>{{ comment.commentator }}</u>, <small>{{ comment.commented_on }}</small></p>
+            <a href="{% url 'comment-update' comment.id %}" align="right" class="update-link"><button>Update</button></a>
+            <a href="{% url 'comment-delete' comment.id %}" align="right" class="delete-link"><button>Delete</button></a>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

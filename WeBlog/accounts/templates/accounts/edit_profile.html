@@ -1,0 +1,33 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block static%}
+    <link rel="stylesheet" type="text/css" href="">
+{% endblock static%}
+
+{% block content %}
+<div class="main">
+    <div class="user-detail-form-container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-first-name">
+                <h3>First Name :</h3>
+                {{form.first_name}}
+            </div>
+            <div class="form-last-name">
+                <h3>Last Name :</h3>
+                {{form.last_name}}
+            </div>
+            <div class="form-bio">
+                <h3>Bio :</h3>
+                {{form.bio}}
+            </div>
+            <div class="form-profile-pic">
+                <h3>Profile Picture :</h3>
+                {{form.profile_pic}}
+            </div>
+            <button class="submit-btn" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

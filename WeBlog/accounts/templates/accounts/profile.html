@@ -1,0 +1,21 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block static%}
+    <link rel="stylesheet" type="text/css" href="">
+{% endblock static%}
+
+{% block content %}
+<div class="main">
+    <div class="user-detail-container">
+        <a class="back-btn" href="{% url 'home' %}"><button>Back</button></a>
+        <h3>{{ profile.first_name }}</h3>
+        <h3>{{ profile.last_name }}</h3>
+        <h3>{{ profile.user.username }}</h3>
+        <h3>{{ profile.user.email }}</h3>
+        <h3>{{ profile.bio }}</h3>
+        <img src="{{ profile.profile_pic.url }}" alt="">
+        <a href="{% url 'profile-update' object.id%}" class="profile-update-link"><button>Edit Profile</button></a>
+    </div>
+</div>
+
+{% endblock content %}

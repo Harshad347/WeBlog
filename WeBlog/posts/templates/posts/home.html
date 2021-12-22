@@ -1,0 +1,28 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+{% endblock style %}
+
+{% block content %}
+<div class="main">
+    <div class="nav-bar">
+        <h1 class="nav-bar-header">WeBlog</h1>
+        <a align="center" href="{% url 'post-create' %}" class="create-link"><button>Create New Post</button></a>
+        <div align="right"><b>{{ request.user }}</b> <a href="{% url 'logout' %}" class="logout-link"><button>Logout</button></a></div>
+    </div>
+    <div class="home-container">
+        {% for post in posts %}
+        <div class="detail-container">
+            <img src="{{post.cover_pic.url}}" alt="" class="cover_pic">
+            <h3 class="post-title">{{ post.title }}</h3>
+            <p class="post-overview">{{ post.overview }}</p>
+            <p class="post-date">by <u>{{ post.author }}</u>, <small>{{ post.created_on }}</small></p>
+            <a href="{% url 'post-detail' post.id %}" align="right" class="detail-link"><button>View</button></a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
